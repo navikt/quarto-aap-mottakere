@@ -1,0 +1,13 @@
+# Gamle pressemeldinger {.unnumbered}
+
+arkiv
+
+## 2024
+
+{{< include arkiv/pressemelding_202401.qmd >}}
+
+## 2023
+
+{{< include arkiv/pressemelding_202310.qmd >}}
+
+

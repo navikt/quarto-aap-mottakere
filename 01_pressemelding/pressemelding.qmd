@@ -1,0 +1,4 @@
+# Siste pressemelding {.unnumbered}
+
+{{< include pressemelding_202406.qmd >}}
+

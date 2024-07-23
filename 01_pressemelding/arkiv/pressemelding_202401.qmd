@@ -1,0 +1,32 @@
+### Januar 2024: Nesten 150 000 nordmenn mottar arbeidsavklaringspenger
+
+::: {.callout icon=false}
+Publisert 15. januar 2024 | Oppdatert 28. februar 2024
+:::
+
+På slutten av fjoråret mottok 148 969 personer arbeidsavklaringspenger. Dette er nær 9 600 flere sammenliknet med året før.
+
+Dette medfører at 4,2 prosent av befolkningen i aldersgruppen 18-66 år mottar ytelsen. Hvis man sammenligner før pandemien (februar 2020) betyr det at nær 33 000 flere mottar AAP. 
+
+– Økningen av mottakere på arbeidsavklaringspenger kan sannsynligvis tilskrives økt smitte og sykdomstrykk i befolkningen, samt at færre sluttet på AAP i løpet av pandemien og etter regelverksendringene i 2022, sier arbeids- og velferdsdirektør Hans Christian Holte.
+
+Han sier også at det er få tegn til at tendensen avtar og økningen i 2023 har vært på nivå med det vi så i det første året av pandemien.
+
+– Vi må derfor anta at vi kan se flere motta AAP også i starten av 2024, sier Holte.
+
+Figur 1: Antall mottakere av AAP
+
+```{python}
+#| include: false
+# include: false skjuler warning fra BQ
+from hjelpefunksjoner import pressemelding_plott
+max_aarmnd = 202401
+fig = pressemelding_plott(max_aarmnd = max_aarmnd)
+```
+
+```{python}
+#| echo: false
+fig.show()
+```
+
+...
