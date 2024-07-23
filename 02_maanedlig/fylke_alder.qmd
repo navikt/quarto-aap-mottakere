@@ -1,0 +1,21 @@
+# Fylke og alder
+
+*noe om bofylke og alder*
+
+**tabell mangler på BQ**
+
+
+```{python}
+#| output: false
+#| include: false
+from hjelpefunksjoner import hente_bq_df
+
+table_bq = "agg_aap_kjonn_alder_mnd"
+where_clause = "ytelse = 'Arbeidsavklaringspenger'"
+df = hente_bq_df(table_bq, where_clause)
+```
+
+```{python}
+#| echo: false
+df.head(18)
+```

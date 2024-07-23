@@ -1,0 +1,51 @@
+<!-- # Mottakere av arbeidsavklaringspenger (AAP) {.unnumbered} -->
+# Om statistikken {.unnumbered}
+
+Statistikk over personer som får utbetalt arbeidsavklaringspenger (AAP) fra NAV i løpet av måneden. Beholdningsstatistikk publiseres månedlig. Statistikken over nye mottakere av AAP og personer som ikke lenger mottar AAP publiseres kvartalsvis.
+
+Denne datafortellingen er under arbeid og skal replikere [statistikk-innholdet på nav.no][aap_statistikk], men forbedret og interaktivt.
+
+---
+
+```{python}
+#| output: false
+#| echo: false
+from hjelpefunksjoner import pressemelding_plott
+fig = pressemelding_plott(xmin = "2018-01-01")
+```
+
+```{python}
+#| echo: false
+fig.show()
+```
+
+
+::: {.callout-note title="Navigasjon" }
+
+Naviger med menyen til høyre. Hver side viser de siste tallene, men du kan velge egendefinerte tidspoerioder. 
+
+:::
+
+
+
+::: {.callout-tip title="Fakta"}
+
+**Diagnoser AAP**
+
+En diagnose settes av lege og diagnoseopplysninger sendes til NAV på skjemaet 'Legeerklæring ved arbeidsuførhet' ved søknad om arbeidsavklaringspenger. NAV legger dette inn i NAVs saksbehandlingssystem Arena. Diagnosene er i hovedsak kodet etter standarden ICPC, versjon 2 (“The International Classification of Primary Care”). ICPC er den internasjonale klassifikasjonen for helseproblemer, diagnoser og andre årsaker til kontakt med primærhelsetjenesten. Denne standarden brukes også for sykmeldinger i Norge.
+
+Diagnosekodene er organisert etter organkode (bokstav), og en tallkode for den spesifikke diagnosen. Tallkodene er fordelt i «symptomer og plager» (kodenummer 1-29), «sykdomsdiagnoser» (kodenummer 70-99) og «prosesskoder» (kodenummer 30-69).
+
+En oversikt over de ulike diagnosekodene er tilgjengelig hos [Direktoratet for e-helse][e_helse] som er ansvarlig for kodesystemet i Norge.
+
+
+**Definisjoner i ny tabell om arbeidsmarkeds- og uførestatus seks måneder etter avgang**
+
+Statistikken viser overgangsstatus fordelt på ulike statusgrupper 6 måneder etter avgang. I begge tilfeller er statusgrupper som kommer høyere opp i tabellen prioritert. Det betyr at i statistikken som viser «arbeidsmarkedsstatus seks måneder etter avgang» vil personer som er arbeidstaker med stønad og mottar uføretrygd, falle inn i gruppen arbeidstaker med stønad, mens personer som er registrert med nedsatt arbeidsevne og uføretrygd ende i statusgruppen nedsatt arbeidsevne. Statistikken som viser arbeidsmarkeds- og uførestatus forsøker å tydeliggjøre overgangen til arbeid og uføretrygd ved å prioritere disse gruppene. 
+
+:::
+
+
+<!-- lenker -->
+[aap_statistikk]: https://www.nav.no/no/nav-og-samfunn/statistikk/aap-nedsatt-arbeidsevne-og-uforetrygd-statistikk/arbeidsavklaringspenger
+[e_helse]: https://www.ehelse.no/standardisering/standarder/icpc-2-den-internasjonale-klassifikasjonen-for-primaerhelsetjenesten

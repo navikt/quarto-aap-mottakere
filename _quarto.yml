@@ -1,0 +1,63 @@
+project:
+  type: book
+
+book:
+  title: "Mottakere av arbeidsavklaringspenger"
+  description: "Datafortelling i Quarto for offentlig statistikk på mottakere av arbeidsavklaringspenger (AAP)"
+  status: "Under arbeid"
+  author:
+    - name: Eirik Grønlien
+      affiliation: Statistikkseksjonen, Nav
+      email: eirik.gronlien@nav.no
+    - name: Brynjar Morka Mæhlum
+      affiliation: NAV IT
+      email: brynjar.morka.mehlum@nav.no
+  publisher: "NAV - Arbeids- og velferdsetaten"
+  # image: assets/cover.png
+  genre: "NAV rapport, offentlig staistikk"
+  license: "MIT"
+  language: "no"
+  date: "07.23.2024 09:00"
+  date-format: "DD.MM.YYYY HH:mm [UTC]"
+  page-navigation: true
+  repo-url: https://github.com/navikt/quarto-aap-mottakere
+  repo-actions: [edit, issue]
+  open-graph: true
+  # downloads: [pdf, epub]
+  chapters:
+    - index.qmd
+    - part: Pressemelding
+      chapters:
+        - 01_pressemelding/pressemelding.qmd
+        - 01_pressemelding/pressemelding_arkiv.qmd
+    - part: Månedlige tall
+      chapters:
+        - 02_maanedlig/alder_kjonn.qmd
+        - 02_maanedlig/fylke_alder.qmd
+  # appendices:
+  #   - appendices/noe.qmd
+  navbar:
+    logo: nav_logo.svg
+    logo-alt: "Logo til NAV - Arbeids- og velferdsetaten"
+    right:
+      - icon: slack
+        href: https://nav-it.slack.com/archives/C02N1SKJT2T
+        aria-label: Slack kanal for kontakt
+      - icon: people-fill
+        href: https://teamkatalog.nav.no/team/3c411c72-9587-4c6f-937e-2a404935b778
+        aria-label: Ansvarlig team hos NAV
+
+format:
+  html:
+    date-modified: now
+    lang: no
+    theme:
+      light: flatly
+      # dark: darkly
+  # epub:
+  #   cover-image: assets/cover.png
+  #   epub-cover-image: assets/cover.png
+  # pdf:
+  #   toc: true
+  #   colorlinks: true
+  #   number-sections: true

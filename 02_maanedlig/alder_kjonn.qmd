@@ -1,0 +1,84 @@
+# Alder og kjønn
+
+*noe om alder og kjønn*
+
+**legge til last-ned-knapp**
+
+**legge til input for å velge periode**
+
+
+```{python}
+#| output: false
+#| include: false
+from hjelpefunksjoner import hente_bq_df
+
+table_bq = "agg_aap_kjonn_alder_mnd"
+where_clause = "ytelse = 'Arbeidsavklaringspenger'"
+df = hente_bq_df(table_bq, where_clause)
+
+df = df[["aarmnd", "kjonn", "aldersgruppe", "mottaker_antall"]]
+
+df_K = df[df["kjonn"] == "K"]
+df_M = df[df["kjonn"] == "M"]
+```
+
+```{python}
+#| echo: false
+df.head(18)
+```
+
+```{python}
+#| echo: false
+df_K.head(6)
+
+df_M.head(6)
+```
+
+<!-- make a input field for aarmnd-->
+```{python}
+
+from ipywidgets import SelectionRangeSlider, HBox, VBox, Layout, Output
+from IPython.display import display
+import pandas as pd
+
+# Assuming df is your DataFrame
+
+# Define the selection range slider
+index_start = len(df["aarmnd"].unique()) - 12
+index_end = len(df["aarmnd"].unique()) - 1
+options = df["aarmnd"].unique()[::-1]
+
+start_aarmnd_widget = SelectionRangeSlider(
+    options=options,
+    index=(index_start, index_end),
+    description='Måned',
+    disabled=False,
+    layout=Layout(width='100%')
+)
+
+# Create an output widget
+output = Output()
+
+# Define a callback function that updates the output based on the selection
+def on_value_change(change):
+    global df_filtered  # Step 2: Declare the use of the global variable
+    with output:
+        output.clear_output()
+        # Get the selected range
+        selected_range = start_aarmnd_widget.value
+        # Filter the DataFrame based on the selection
+        df_filtered = df[df['aarmnd'].isin(selected_range)]  # Update the global variable
+        # Display the filtered DataFrame
+        display(df_filtered)
+
+# Link the callback function to the slider
+start_aarmnd_widget.observe(on_value_change, names='value')
+
+# Display the slider and the output widget
+display(start_aarmnd_widget, output)
+
+```
+
+```{python}
+start_aarmnd_widget.value
+```
