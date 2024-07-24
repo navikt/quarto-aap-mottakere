@@ -11,74 +11,53 @@
 #| output: false
 #| include: false
 from hjelpefunksjoner import hente_bq_df
+from IPython.display import display, HTML
 
 table_bq = "agg_aap_kjonn_alder_mnd"
-where_clause = "ytelse = 'Arbeidsavklaringspenger'"
-df = hente_bq_df(table_bq, where_clause)
+where_clause = "ytelse = 'Arbeidsavklaringspenger' and kjonn in ('K', 'M')"
+df_hel = hente_bq_df(table_bq, where_clause)
 
-df = df[["aarmnd", "kjonn", "aldersgruppe", "mottaker_antall"]]
+df = df_hel[["aarmnd", "kjonn", "aldersgruppe", "mottaker_antall"]]
 
 df_K = df[df["kjonn"] == "K"]
 df_M = df[df["kjonn"] == "M"]
 ```
 
-```{python}
-#| echo: false
-df.head(18)
-```
+
+## Tabell
 
 ```{python}
 #| echo: false
-df_K.head(6)
 
-df_M.head(6)
+# Display the scrollable table
+html_table = df.to_html(index=False)
+scrollable_table = f"""
+<div style="height: 200px; overflow-y: auto;">
+    {html_table}
+</div>
+"""
+display(HTML(scrollable_table))
+
+csv = df_hel.to_csv(index=False)
+# Encode CSV to base64
+import base64
+b64 = base64.b64encode(csv.encode()).decode()
+
+# Create a download link and display it
+download_link = f'<a download="aap_kjonn_alder.csv" href="data:text/csv;base64,{b64}" target="_blank">Last ned som CSV</a>'
+display(HTML(download_link))
 ```
 
-<!-- make a input field for aarmnd-->
-```{python}
 
-from ipywidgets import SelectionRangeSlider, HBox, VBox, Layout, Output
-from IPython.display import display
-import pandas as pd
-
-# Assuming df is your DataFrame
-
-# Define the selection range slider
-index_start = len(df["aarmnd"].unique()) - 12
-index_end = len(df["aarmnd"].unique()) - 1
-options = df["aarmnd"].unique()[::-1]
-
-start_aarmnd_widget = SelectionRangeSlider(
-    options=options,
-    index=(index_start, index_end),
-    description='Måned',
-    disabled=False,
-    layout=Layout(width='100%')
-)
-
-# Create an output widget
-output = Output()
-
-# Define a callback function that updates the output based on the selection
-def on_value_change(change):
-    global df_filtered  # Step 2: Declare the use of the global variable
-    with output:
-        output.clear_output()
-        # Get the selected range
-        selected_range = start_aarmnd_widget.value
-        # Filter the DataFrame based on the selection
-        df_filtered = df[df['aarmnd'].isin(selected_range)]  # Update the global variable
-        # Display the filtered DataFrame
-        display(df_filtered)
-
-# Link the callback function to the slider
-start_aarmnd_widget.observe(on_value_change, names='value')
-
-# Display the slider and the output widget
-display(start_aarmnd_widget, output)
-
-```
+## Plotting
 
 ```{python}
-start_aarmnd_widget.value
+#| echo: false
+import plotly.express as px
+
+fig = px.line(df_hel, x="aarmnd_dato", y="mottaker_antall", color="aldersgruppe", facet_row="kjonn", title="Mottakere av (AAP) etter alder og kjønn")
+fig.update_xaxes(title_text='')
+fig.update_yaxes(title_text='')
+fig.show()
+
 ```
